@@ -1,0 +1,19 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Home</title>
+</head>
+<body>
+<div sec:authorize="isAuthenticated()">
+    <p>Welcome, <span th:text="${#authentication.name}">User</span>!</p>
+</div>
+<div sec:authorize="isAnonymous()">
+    <p>Welcome, guest! Please log in to see more content.</p>
+    <a th:href="@{/login}">Login</a>
+</div>
+</div>
+<form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+    <button type="submit">Logout</button>
+</form>
+</div>
+</body>
+</html>
